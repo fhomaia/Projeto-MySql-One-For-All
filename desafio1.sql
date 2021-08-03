@@ -42,6 +42,22 @@ VALUES
 ('Lance Day'),
 ('Freedie Shannon');
 
+CREATE TABLE albums (
+album_id INT AUTO_INCREMENT,
+`title` VARCHAR(40),
+artist_id INT,
+CONSTRAINT PRIMARY KEY (album_id),
+FOREIGN KEY (artist_id) REFERENCES artists(artist_id)
+) engine = InnoDB;
+
+INSERT INTO albums(title, artist_id)
+VALUES
+('Envious', 1),
+('Exuberant', 1),
+('Hallowed Steam', 2),
+('Incandescent', 3),
+('Temporary Culture', 4);
+
 CREATE TABLE songs (
 song_id INT AUTO_INCREMENT,
 album_id INT,
@@ -70,22 +86,6 @@ VALUES
 (5, 'Thang Of Thunder'),
 (5, 'Words Of Her Life'),
 (5, 'Without My Streets');
-
-CREATE TABLE albums (
-album_id INT AUTO_INCREMENT,
-`title` VARCHAR(40),
-artist_id INT,
-CONSTRAINT PRIMARY KEY (album_id),
-FOREIGN KEY (artist_id) REFERENCES artists(artist_id)
-) engine = InnoDB;
-
-INSERT INTO albums(title, artist_id)
-VALUES
-('Envious', 1),
-('Exuberant', 1),
-('Hallowed Steam', 2),
-('Incandescent', 3),
-('Temporary Culture', 4);
 
 CREATE TABLE history_of_replays(
 user_id INT,
