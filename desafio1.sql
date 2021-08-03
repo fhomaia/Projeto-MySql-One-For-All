@@ -4,14 +4,15 @@ USE SpotifyClone;
 
 CREATE TABLE plans (
 plan_id INT PRIMARY KEY AUTO_INCREMENT,
-`type` VARCHAR(25) 
+`type` VARCHAR(25),
+price INT
 ) engine = InnoDB;
 
-INSERT INTO plans(`type`) 
+INSERT INTO plans(`type`, price) 
 VALUES
-('gratuito'),
-('familiar'),
-('universitário');
+('gratuito', 0),
+('familiar', 7.99),
+('universitário', 5.99);
 
 CREATE TABLE users (
 user_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -43,30 +44,32 @@ VALUES
 
 CREATE TABLE songs (
 song_id INT AUTO_INCREMENT,
+album_id INT,
 `title` VARCHAR(40),
-CONSTRAINT PRIMARY KEY (song_id)
+CONSTRAINT PRIMARY KEY (song_id),
+FOREIGN KEY (album_id) REFERENCES albums(album_id)
 ) engine = InnoDB;
 
-INSERT INTO songs(`title`)
+INSERT INTO songs(album_id, `title`)
 VALUES
-('Soul For Us'),
-('Reflections Of Magic'),
-('Dance With Her Own'),
-('Troubles Of My Inner Fire'),
-('Time Fireworks'),
-('Magic Circus'),
-('Honey, So Do I'),
-("Sweetie, Let's Go Wild"),
-('She Knows'),
-('Fantasy For Me'),
-('Celebration Of More'),
-('Rock His Everything'),
-('Home Forever'),
-('Diamond Power'),
-("Honey, Let's Be Silly"),
-('Thang Of Thunder'),
-('Words Of Her Life'),
-('Without My Streets');
+(1, 'Soul For Us'),
+(1, 'Reflections Of Magic'),
+(1, 'Dance With Her Own'),
+(2, 'Troubles Of My Inner Fire'),
+(2, 'Time Fireworks'),
+(3, 'Magic Circus'),
+(3, 'Honey, So Do I'),
+(3, "Sweetie, Let's Go Wild"),
+(3, 'She Knows'),
+(4, 'Fantasy For Me'),
+(4, 'Celebration Of More'),
+(4, 'Rock His Everything'),
+(4, 'Home Forever'),
+(4, 'Diamond Power'),
+(4, "Honey, Let's Be Silly"),
+(5, 'Thang Of Thunder'),
+(5, 'Words Of Her Life'),
+(5, 'Without My Streets');
 
 CREATE TABLE albums (
 album_id INT AUTO_INCREMENT,
@@ -83,35 +86,6 @@ VALUES
 ('Hallowed Steam', 2),
 ('Incandescent', 3),
 ('Temporary Culture', 4);
-
-CREATE TABLE album_song (
-album_id INT,
-song_id INT,
-CONSTRAINT PRIMARY KEY (album_id, song_id),
-FOREIGN KEY (album_id) REFERENCES albums(album_id),
-FOREIGN KEY (song_id) REFERENCES songs(song_id)
-);
-
-INSERT INTO album_song(album_id, song_id)
-VALUES
-(1, 1),
-(1, 2),
-(1, 3),
-(2, 4),
-(2, 5),
-(3, 6),
-(3, 7),
-(3, 8),
-(3, 9),
-(4, 10),
-(4, 11),
-(4, 12),
-(4, 13),
-(4, 14),
-(4, 15),
-(5, 16),
-(5, 17),
-(5, 18);
 
 CREATE TABLE history_of_replays(
 user_id INT,
