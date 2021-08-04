@@ -1,11 +1,12 @@
-CREATE DATABASE IF NOT EXISTS `SpotifyClone`;
+DROP DATABASE IF EXISTS `SpotifyClone`;
+CREATE DATABASE `SpotifyClone`;
 
 USE SpotifyClone;
 
 CREATE TABLE plans (
 plan_id INT PRIMARY KEY AUTO_INCREMENT,
 `type` VARCHAR(25),
-price INT
+price DOUBLE
 ) engine = InnoDB;
 
 INSERT INTO plans(`type`, price) 
