@@ -6,7 +6,7 @@ USE SpotifyClone;
 CREATE TABLE plans (
 plan_id INT PRIMARY KEY AUTO_INCREMENT,
 `type` VARCHAR(25),
-price DOUBLE
+price DECIMAL(5,2)
 ) engine = InnoDB;
 
 INSERT INTO plans(`type`, price) 
